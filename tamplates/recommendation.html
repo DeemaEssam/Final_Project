@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Destinations</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='cards2.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='cards.css') }}">
+
+
+
+
+    <style>
+        body {
+            background-image: url('https://github.com/DeemaEssam/Final_Project/blob/main/img/bg2.jpg?raw=true');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        /* Fix the blur effect so it stays in place */
+        body::before {
+            content: "";
+            position: fixed;
+            /* Keeps it fixed while scrolling */
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            /* Semi-transparent overlay */
+            backdrop-filter: blur(10px);
+            /* Apply blur */
+            -webkit-backdrop-filter: blur(10px);
+            /* Safari support */
+            z-index: -1;
+        }
+
+        h1 {
+            color: #fff;
+        }
+
+        /*.lead{
+                color:#aaa;
+            }
+
+            .wrapper{
+                margin:10vh
+            }*/
+
+        :root {
+            --orange: #fd9940;
+            --darkorange: #dd7d25;
+            --platinum: #e5e5e5;
+            --black: #2b2d42;
+            --white: #fff;
+            --thumb: #edf2f4;
+        }
+
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 1400px;
+            padding: 0 15px;
+            margin: 0 auto;
+            color: var(--white);
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 1em;
+        }
+
+        .tag {
+            background-color: #FF5722;
+            /* Vibrant orange */
+            color: white;
+            font-weight: bold;
+            padding: 8px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            font-family: Arial, sans-serif;
+            text-transform: uppercase;
+            font-size: 14px;
+
+        }
+
+        .tag:hover {
+            background-color: #ff562298;
+            /* Vibrant orange */
+        }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            /* Position it from the left side to the middle */
+            transform: translateX(-50%);
+            /* Offset it by 50% of its width to truly center it */
+            width: 70%;
+            background-color: #b7a8a3bf;
+            /* Vibrant color */
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+        }
+
+
+        /* Navbar buttons */
+        .nav-item {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 10px;
+            border-radius: 15px;
+            transition: background 0.3s ease;
+        }
+
+        /* Hover effect */
+        .nav-item:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <center>
+            <br><br>
+            <center>
+                <img src="https://github.com/DeemaEssam/Final_Project/blob/main/img/icon.png?raw=true" width="80px">
+                <br>
+                <div class="tag">HISTORICAL SITES</div>
+                <div class="tag">RESTAURANTS</div>
+                <div class="tag">ADVENTURES</div>
+                <div class="tag">CULTURAL SITES</div>
+            </center>
+            <br>
+
+            <div class="container">
+                <h1 class="display-4 font-weight-bolder">Most Popular</h1>
+                <div>
+                    <ul class="cards" id="card-popular">
+
+                    </ul>
+                </div>
+            </div>
+
+            <br>
+
+            <center>
+                <h1 class="display-4 font-weight-bolder">Recommended Sites</h1>
+                <br>
+                <div class="row" id="recommendedDestinations"><!-- <div class="row"> -->
+                    {% for destination in recommendations %}
+                    <div class="col-sm-12 col-md-6 col-lg-4 mb-4">
+                        <a href="info2.html?id={{ destination.id }}">
+                        <div class="card text-light card-has-bg click-col"
+                            style="background-image:url('{{ destination.imageUrl_x }}'); min-height: 200px; min-width: 300px; background-size: cover; background-position: center;">
+                            <img class="card-img d-none" src="{{ destination.imageUrl_x }}">
+                            <div style="text-align: left;" class="card-img-overlay d-flex flex-column">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <small><i class="far fa-clock"></i> 📍 {{ destination.city }}</small>
+                                        <small><i class="far fa-clock"></i> ⭐ {{ destination.placeRating }}</small>
+                                    </div>
+                                </div>
+                                <div class="card-footer">
+                                    <div class="media">
+                                        <div class="media-body">
+                                            <h4 class="my-0 text-light d-block">{{ destination.name }}</h4>
+                                            <small>⭕ {{ destination.subtype }}</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </a>
+                    </div>
+                    {% endfor %}<!-- </div> -->
+                </div>
+            </center>
+
+            <!-- Navbar at Bottom -->
+            <div class="bottom-nav">
+                <a href="https://deemaessam.github.io/projects/Senior/Index.html" class="nav-item">🏠 Home</a>
+                <!--<a href="" class="nav-item">📍 Destinations</a>
+                                <a href="" class="nav-item">⭐ Favorites</a>-->
+                <a href="https://deemaessam.github.io/projects/Senior/profile.html" class="nav-item">👤 Profile</a>
+                <a href="" class="nav-item">↩️ Logout</a>
+            </div>
+        </center>
+    </section>
+
+    <script>
+        // URL to the raw JSON file on GitHub
+        const datasetUrl = 'https://raw.githubusercontent.com/DeemaEssam/DeemaEssam.github.io/refs/heads/main/projects/Senior/dataset/dataset.json';
+
+        // Fetch the dataset from GitHub
+        fetch(datasetUrl)
+            .then(response => response.json())
+            .then(data => {
+                // Populate the second container (card-popular)
+                const containerPopular = document.getElementById('card-popular');
+                data.forEach(destination => {
+                    const cardHtmlPopular = `
+                                <li class="card" style="min-height: 200px; min-width: 100px; text-align: left; background-image: url('${destination.imageUrl_x}');">
+                                    <div class="card-img-overlay d-flex flex-column">
+                                        <div>
+                                            <h3 class="card-title">${destination.name}</h3>
+                                        </div>
+                                        <div class="card-link-wrapper">
+                                            <p>⭕ ${destination.theme}</p>
+                                            <p>📍${destination.city}</p>
+                                            <p>⭐ ${destination.placeRating}</p>
+                                        </div>
+                                    </div>
+                                </li>
+                        `;
+                    const link = document.createElement('a');
+                    link.href = `info2.html?id=${destination.id}`;  // The destination ID or unique identifier
+                    link.innerHTML = cardHtmlPopular;
+                    containerPopular.appendChild(link);
+                });
+            })
+            .catch(error => console.error('Error fetching the dataset:', error));
+    </script>
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script> <!-- For the clock icon -->
+</body>
+
+</html>

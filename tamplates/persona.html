@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Persona</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url('https://i.pinimg.com/736x/91/ed/87/91ed87106d401f7210ab74780d85fc1b.jpg');
+            backdrop-filter: blur(5px);
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.6);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        h2 {
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        select,
+        button,
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        select {
+            background: white;
+            color: black;
+        }
+
+        button {
+            background: #ff5722;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2><em>Define Your Travel Persona</em></h2>
+        <form action="{{ url_for('home') }}" method="POST">
+            <label>Preferred Place Type:</label>
+            <select name="subtype">
+                <option value="Religious Sites">Religious Sites</option>
+                <option value="Historical Sites & Landmarks">Historical Sites & Landmarks</option>
+                <option value="Nature & Parks">Nature & Parks</option>
+                <option value="Museums">Museums</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Tours & Adventures">Tours & Adventures</option>
+                <option value="Restaurants (Food & Dining)">Restaurants</option>
+                <option value="Wellness & Fitness">Wellness & Fitness</option>
+                <option value="Entertainment">Entertainment</option>
+            </select>
+        
+            <label>Enter Keywords (comma-separated):</label>
+            <input type="text" name="keywords" placeholder="Historical, Adventure, Relaxing">
+        
+            <!-- <label>Preferred City:</label> -->
+            <!-- <input type="text" name="city" placeholder="Riyadh"> -->
+
+            <label>Preferred City:</label>
+            <select name="city">
+                <option value="Abha">Abha - أبها</option>
+                <option value="Al Ahsa">Al Ahsa - الأحساء</option>
+                <option value="Al Bahah">Al Bahah - الباحة</option>
+                <option value="Al Badayea">Al Badayea - البدائع</option>
+                <option value="Al Bukayriyah">Al Bukayriyah - البكيرية</option>
+                <option value="Al Hofuf">Al Hofuf - الهفوف</option>
+                <option value="Al Jubail">Al Jubail - الجبيل</option>
+                <option value="Al Khobar">Al Khobar - الخبر</option>
+                <option value="Al Mithnab">Al Mithnab - المذنب</option>
+                <option value="Al Muwayh Al Gadeem">Al Muwayh Al Gadeem - الموية القديمة</option>
+                <option value="Al Muzahimiyah">Al Muzahimiyah - المزاحمية</option>
+                <option value="Al Namas">Al Namas - النماص</option>
+                <option value="Al Qatif">Al Qatif - القطيف</option>
+                <option value="Al Qurayyat">Al Qurayyat - القريات</option>
+                <option value="Al Ula">Al Ula - العلا</option>
+                <option value="Al-Nasfah">Al-Nasfah - الناصفة</option>
+                <option value="Ash Shafa">Ash Shafa - الشفا</option>
+                <option value="Az Zulfi">Az Zulfi - الزلفي</option>
+                <option value="Baljurshi">Baljurshi - بلجرشي</option>
+                <option value="Buraydah">Buraydah - بريدة</option>
+                <option value="Dammam">Dammam - الدمام</option>
+                <option value="Dawmat Al Jandal">Dawmat Al Jandal - دومة الجندل</option>
+                <option value="Diriyah">Diriyah - الدرعية</option>
+                <option value="Duhknah">Duhknah - دخنة</option>
+                <option value="Dhahran">Dhahran - الظهران</option>
+                <option value="Hail">Hail - حائل</option>
+                <option value="Jazan">Jazan - جازان</option>
+                <option value="Jeddah">Jeddah - جدة</option>
+                <option value="Jubbah">Jubbah - جعبة</option>
+                <option value="King Abdullah Economic City">King Abdullah Economic City - مدينة الملك عبدالله الإقتصادية</option>
+                <option value="Madinah">Madinah - المدينة</option>
+                <option value="Makkah">Makkah - مكة المكرمة</option>
+                <option value="Maqnah">Maqnah - مقنا</option>
+                <option value="Najran">Najran - نجران</option>
+                <option value="Riyadh">Riyadh - الرياض</option>
+                <option value="Sakaka">Sakaka - سكاكا</option>
+                <option value="Sharorah">Sharorah - شرورة</option>
+                <option value="Shaqra">Shaqra - شقراء</option>
+                <option value="Tabuk">Tabuk - تبوك</option>
+                <option value="Taif">Taif - الطائف</option>
+                <option value="Tanomah">Tanomah - تنومة</option>
+                <option value="Tayma">Tayma - تيماء</option>
+                <option value="Tuba">Tubarjal - طبرجل</option>
+                <option value="Turaif">Turaif - طريف</option>
+                <option value="Umluj">Umluj - أملج</option>
+                <option value="Unaizah">Unaizah - عنيزة</option>
+                <option value="Ushaiqer">Ushaiqer - أشيقر</option>
+                <option value="Yanbu">Yanbu - ينبع</option>
+            </select>
+        
+            <button type="submit">Find Recommendations</button>
+        </form>
+    </div>
+
+    <script>
+        function savePersona() {
+            const persona = {
+                activity: document.getElementById("activity").value,
+                keywords: document.getElementById("keywordsInput").value,
+                user_id: "user_123"
+            };
+
+            fetch('/recommend', {  // Ensure Flask has the correct endpoint
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(persona)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                })
+                .catch(error => {
+                    console.error("Error:", error);
+                });
+        }
+    </script>
+
+</body>
+
+</html>
