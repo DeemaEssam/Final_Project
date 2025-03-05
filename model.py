@@ -45,7 +45,9 @@ def filter_and_prepare_data(preferred_subtype, preferred_city):
         if filtered_df.empty:
             print("No matching places found for your preferences.")  # Debug log
             return None
-        return filtered_df
+        else:
+            filtered_df = filtered_df.drop_duplicates(subset=['id'], keep='first').copy()
+            return filtered_df
     else:
         print("Error: df is not a valid DataFrame!")  # Debug log
         return None
@@ -72,7 +74,7 @@ def recommend(preferred_subtype, keywords, preferred_city):
     similarities = cosine_similarity(user_keywords_vector, tfidf_matrix).flatten()
 
     filtered_df['similarity'] = similarities
-    recommendations = filtered_df.sort_values(by='similarity', ascending=False).head(50)
+    recommendations = filtered_df.sort_values(by='similarity', ascending=False).head(500000)
 
     if recommendations.empty:
         print("No recommendations found based on the keywords and preferences.")  # Debug log
